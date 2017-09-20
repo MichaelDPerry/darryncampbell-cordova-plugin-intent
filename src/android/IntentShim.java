@@ -310,7 +310,8 @@ public class IntentShim extends CordovaPlugin {
 
         for (String key : extras.keySet()) {
             Long value = extras.get(key);
-            // If type is text html, the extra text must sent as HTML
+	    i.putExtra(key, value);
+            /*// If type is text html, the extra text must sent as HTML
             if (key.equals(Intent.EXTRA_TEXT) && type.equals("text/html")) {
                 i.putExtra(key, Html.fromHtml(value));
             } else if (key.equals(Intent.EXTRA_STREAM)) {
@@ -323,7 +324,7 @@ public class IntentShim extends CordovaPlugin {
                 i.putExtra(Intent.EXTRA_EMAIL, new String[] { value });
             } else {
                 i.putExtra(key, value);
-            }
+            }*/
         }
 
         i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

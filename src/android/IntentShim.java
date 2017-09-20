@@ -308,7 +308,7 @@ public class IntentShim extends CordovaPlugin {
             }
         }
 
-        for (Long key : extras.keySet()) {
+        for (String key : extras.keySet()) {
             Long value = extras.get(key);
             // If type is text html, the extra text must sent as HTML
             if (key.equals(Intent.EXTRA_TEXT) && type.equals("text/html")) {

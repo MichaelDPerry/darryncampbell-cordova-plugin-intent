@@ -120,7 +120,7 @@ public class IntentShim extends CordovaPlugin {
                 }
             }
             JSONObject extras = obj.has("extras") ? obj.getJSONObject("extras") : null;
-            Map<String, Object> extrasMap = new HashMap<String, Object>();
+            Map<String, String> extrasMap = new HashMap<String, String>();
             int requestCode = obj.has("requestCode") ? obj.getInt("requestCode") : 1;
 
             // Populate the extras if any exist
@@ -128,7 +128,7 @@ public class IntentShim extends CordovaPlugin {
                 JSONArray extraNames = extras.names();
                 for (int i = 0; i < extraNames.length(); i++) {
                     String key = extraNames.getString(i);
-                    Object value = Long.parseLong(extras.getString(key));
+                    String value = extras.getString(key);
                     extrasMap.put(key, value);
                 }
             }
@@ -292,7 +292,7 @@ public class IntentShim extends CordovaPlugin {
         return true;
     }
 
-    private void startActivity(String action, Uri uri, String type, Map<String, Object> extras, boolean bExpectResult, int requestCode) {
+    private void startActivity(String action, Uri uri, String type, Map<String, String> extras, boolean bExpectResult, int requestCode) {
         //  Credit: https://github.com/chrisekelley/cordova-webintent
         Intent i = (uri != null ? new Intent(action, uri) : new Intent(action));
 
@@ -309,9 +309,8 @@ public class IntentShim extends CordovaPlugin {
         }
 
         for (String key : extras.keySet()) {
-            Object value = extras.get(key);
-	    i.putExtra(key, value);
-            /*// If type is text html, the extra text must sent as HTML
+            String value = extras.get(key);
+            // If type is text html, the extra text must sent as HTML
             if (key.equals(Intent.EXTRA_TEXT) && type.equals("text/html")) {
                 i.putExtra(key, Html.fromHtml(value));
             } else if (key.equals(Intent.EXTRA_STREAM)) {
@@ -322,9 +321,12 @@ public class IntentShim extends CordovaPlugin {
             } else if (key.equals(Intent.EXTRA_EMAIL)) {
                 // allows to add the email address of the receiver
                 i.putExtra(Intent.EXTRA_EMAIL, new String[] { value });
-            } else {
+	    // Clover requires a Long value.
+            } else if (key.equals(clover.intent.extra.AMOUNT)) {
+		i.putExtra(key, Long.parseLong(value));
+	    } else {
                 i.putExtra(key, value);
-            }*/
+            }
         }
 
         i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

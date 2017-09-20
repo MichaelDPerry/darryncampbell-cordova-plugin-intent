@@ -274,7 +274,7 @@ public class IntentShim extends CordovaPlugin {
                     JSONArray extraNames = extras.names();
                     for (int i = 0; i < extraNames.length(); i++) {
                         String key = extraNames.getString(i);
-                        String value = extras.getString(key);
+                        Long value = Long.parseLong(extras.getString(key));
                         result.putExtra(key, value);
                     }
                 }

@@ -120,7 +120,7 @@ public class IntentShim extends CordovaPlugin {
                 }
             }
             JSONObject extras = obj.has("extras") ? obj.getJSONObject("extras") : null;
-            Map<String, Long> extrasMap = new HashMap<String, Long>();
+            Map<String, Object> extrasMap = new HashMap<String, Object>();
             int requestCode = obj.has("requestCode") ? obj.getInt("requestCode") : 1;
 
             // Populate the extras if any exist
@@ -128,7 +128,7 @@ public class IntentShim extends CordovaPlugin {
                 JSONArray extraNames = extras.names();
                 for (int i = 0; i < extraNames.length(); i++) {
                     String key = extraNames.getString(i);
-                    Long value = Long.parseLong(extras.getString(key));
+                    Object value = Long.parseLong(extras.getString(key));
                     extrasMap.put(key, value);
                 }
             }
@@ -292,7 +292,7 @@ public class IntentShim extends CordovaPlugin {
         return true;
     }
 
-    private void startActivity(String action, Uri uri, String type, Map<String, Long> extras, boolean bExpectResult, int requestCode) {
+    private void startActivity(String action, Uri uri, String type, Map<String, Object> extras, boolean bExpectResult, int requestCode) {
         //  Credit: https://github.com/chrisekelley/cordova-webintent
         Intent i = (uri != null ? new Intent(action, uri) : new Intent(action));
 
@@ -309,7 +309,7 @@ public class IntentShim extends CordovaPlugin {
         }
 
         for (String key : extras.keySet()) {
-            Long value = extras.get(key);
+            Object value = extras.get(key);
 	    i.putExtra(key, value);
             /*// If type is text html, the extra text must sent as HTML
             if (key.equals(Intent.EXTRA_TEXT) && type.equals("text/html")) {

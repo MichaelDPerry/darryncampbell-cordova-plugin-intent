@@ -492,7 +492,6 @@ public class IntentShim extends CordovaPlugin {
             final Bundle bundle = (Bundle) value;
             final JSONObject result = new JSONObject();
             for (final String key : bundle.keySet()) {
-		bundle.setClassLoader(getClassLoader());
                 result.put(key, toJsonValue(bundle.get(key)));
             }
             return result;

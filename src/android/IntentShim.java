@@ -120,7 +120,7 @@ public class IntentShim extends CordovaPlugin {
                 }
             }
             JSONObject extras = obj.has("extras") ? obj.getJSONObject("extras") : null;
-            Map<String, String> extrasMap = new HashMap<String, String>();
+            Map<String, Long> extrasMap = new HashMap<String, Long>();
             int requestCode = obj.has("requestCode") ? obj.getInt("requestCode") : 1;
 
             // Populate the extras if any exist

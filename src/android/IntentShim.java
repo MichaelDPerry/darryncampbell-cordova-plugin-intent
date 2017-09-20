@@ -292,7 +292,7 @@ public class IntentShim extends CordovaPlugin {
         return true;
     }
 
-    private void startActivity(String action, Uri uri, String type, Map<String, String> extras, boolean bExpectResult, int requestCode) {
+    private void startActivity(String action, Uri uri, String type, Map<String, Long> extras, boolean bExpectResult, int requestCode) {
         //  Credit: https://github.com/chrisekelley/cordova-webintent
         Intent i = (uri != null ? new Intent(action, uri) : new Intent(action));
 

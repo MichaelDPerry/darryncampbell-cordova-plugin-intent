@@ -309,7 +309,10 @@ public class IntentShim extends CordovaPlugin {
         }
 
         for (String key : extras.keySet()) {
+	    Log.d(LOG_TAG, "Key = " + key);
             String value = extras.get(key);
+	    Log.d(LOG_TAG, "Value = " + value);
+	    Log.d(LOG_TAG, "Value parsed = " + Long.parseLong(value));
             // If type is text html, the extra text must sent as HTML
             if (key.equals(Intent.EXTRA_TEXT) && type.equals("text/html")) {
                 i.putExtra(key, Html.fromHtml(value));
@@ -323,7 +326,6 @@ public class IntentShim extends CordovaPlugin {
                 i.putExtra(key, new String[] { value });
 	    //Clover requires a Long value.
             } else if (key == "clover.intent.extra.AMOUNT") {
-		Log.d(LOG_TAG, "amount = " + Long.parseLong(value));
 		i.putExtra(key, Long.parseLong(value));
 	    } else {
                 i.putExtra(key, value);
@@ -367,12 +369,13 @@ public class IntentShim extends CordovaPlugin {
     public void onActivityResult(int requestCode, int resultCode, Intent intent)
     {
         super.onActivityResult(requestCode, resultCode, intent);
-	Log.d(LOG_TAG, "Intent = " + intent);
         if (onActivityResultCallbackContext != null && intent != null)
         {
             intent.putExtra("requestCode", requestCode);
             intent.putExtra("resultCode", resultCode);
+		Log.d(LOG_TAG, "Debug 1");
             PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
+		Log.d(LOG_TAG, "Debug 2, result = " + result);
             result.setKeepCallback(true);
             onActivityResultCallbackContext.sendPluginResult(result);
         }

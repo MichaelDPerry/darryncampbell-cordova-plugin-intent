@@ -323,7 +323,7 @@ public class IntentShim extends CordovaPlugin {
                 i.putExtra(key, new String[] { value });
 	    //Clover requires a Long value.
             } else if (key == "clover.intent.extra.AMOUNT") {
-		System.out.println("value = " + Long.parseLong(value));
+		Log.d(LOG_TAG, "amount = " + Long.parseLong(value));
 		i.putExtra(key, Long.parseLong(value));
 	    } else {
                 i.putExtra(key, value);
@@ -367,7 +367,7 @@ public class IntentShim extends CordovaPlugin {
     public void onActivityResult(int requestCode, int resultCode, Intent intent)
     {
         super.onActivityResult(requestCode, resultCode, intent);
-	System.out.println("intent = " + intent);
+	Log.d(LOG_TAG, "Intent = " + intent);
         if (onActivityResultCallbackContext != null && intent != null)
         {
             intent.putExtra("requestCode", requestCode);

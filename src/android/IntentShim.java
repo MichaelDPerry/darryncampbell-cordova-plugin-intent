@@ -372,7 +372,7 @@ public class IntentShim extends CordovaPlugin {
 	    Log.d(LOG_TAG, "requestCode = " + requestCode);
 	    Log.d(LOG_TAG, "resultCode = " + resultCode);
 	    Log.d(LOG_TAG, "Intent = " + intent);
-	    Log.d(LOG_TAG, "IntentJson = " + getIntentJson(intent));
+	    //Log.d(LOG_TAG, "IntentJson = " + getIntentJson(intent));
 	    //DEBUG
             intent.putExtra("requestCode", requestCode);
 	    Log.d(LOG_TAG, "Debug 0");

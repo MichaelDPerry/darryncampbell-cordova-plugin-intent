@@ -323,7 +323,6 @@ public class IntentShim extends CordovaPlugin {
                 i.putExtra(key, new String[] { value });
 	    //Clover requires a Long value.
             } else if (key.equals("clover.intent.extra.AMOUNT")) {
-			Log.d(LOG_TAG, "Value = " + Long.parseLong(value));
 		i.putExtra(key, Long.parseLong(value));
 	    } else {
                 i.putExtra(key, value);
@@ -367,22 +366,22 @@ public class IntentShim extends CordovaPlugin {
     public void onActivityResult(int requestCode, int resultCode, Intent intent)
     {
         super.onActivityResult(requestCode, resultCode, intent);
-		Log.d(LOG_TAG, "Debug 0");
         if (onActivityResultCallbackContext != null && intent != null)
         {
-	    	Log.d(LOG_TAG, "Debug 1");
+	    //DEBUG
+	    Log.d(LOG_TAG, "requestCode = " + requestCode);
+	    Log.d(LOG_TAG, "resultCode = " + resultCode);
+	    Log.d(LOG_TAG, "Intent = " + intent);
+	    Log.d(LOG_TAG, "Intent = " + getIntentJson(intent));
+	    //DEBUG
             intent.putExtra("requestCode", requestCode);
-	    	Log.d(LOG_TAG, "Debug 2");
             intent.putExtra("resultCode", resultCode);
-		Log.d(LOG_TAG, "Debug 3");
             PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
-		Log.d(LOG_TAG, "Debug 4, result = " + result);
             result.setKeepCallback(true);
             onActivityResultCallbackContext.sendPluginResult(result);
         }
         else if (onActivityResultCallbackContext != null)
         {
-	    	Log.d(LOG_TAG, "Debug 5");
             Intent canceledIntent = new Intent();
             canceledIntent.putExtra("requestCode", requestCode);
             canceledIntent.putExtra("resultCode", resultCode);

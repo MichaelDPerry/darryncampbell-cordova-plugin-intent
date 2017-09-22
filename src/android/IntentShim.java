@@ -366,22 +366,16 @@ public class IntentShim extends CordovaPlugin {
     public void onActivityResult(int requestCode, int resultCode, Intent intent)
     {
         super.onActivityResult(requestCode, resultCode, intent);
-	PluginResult test = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
-	Log.d(LOG_TAG, "Result = " + test);
         if (onActivityResultCallbackContext != null && intent != null)
         {
 	    //DEBUG
 	    Log.d(LOG_TAG, "requestCode = " + requestCode);
 	    Log.d(LOG_TAG, "resultCode = " + resultCode);
 	    Log.d(LOG_TAG, "Intent = " + intent);
-	    //Log.d(LOG_TAG, "IntentJson = " + getIntentJson(intent));
 	    //DEBUG
             intent.putExtra("requestCode", requestCode);
-	    Log.d(LOG_TAG, "Debug 0");
             intent.putExtra("resultCode", resultCode);
-	    Log.d(LOG_TAG, "Debug 1");
             PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
-	    Log.d(LOG_TAG, "Debug 2");
             result.setKeepCallback(true);
             onActivityResultCallbackContext.sendPluginResult(result);
         }
@@ -417,7 +411,6 @@ public class IntentShim extends CordovaPlugin {
      * Credit: https://github.com/napolitano/cordova-plugin-intent
      */
     private JSONObject getIntentJson(Intent intent) {
-	Log.d(LOG_TAG, "Debug 3");
         JSONObject intentJSON = null;
         ClipData clipData = null;
         JSONObject[] items = null;

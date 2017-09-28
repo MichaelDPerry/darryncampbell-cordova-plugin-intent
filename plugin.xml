@@ -7,6 +7,7 @@
 	
 	<!-- android -->
     <platform name="android">
+	<framework src="com.clover.sdk.v3.payments" />
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="IntentShim" >
                 <param name="android-package" value="com.darryncampbell.cordova.plugin.intent.IntentShim"/>

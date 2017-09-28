@@ -1,5 +1,7 @@
 package com.darryncampbell.cordova.plugin.intent;
 
+import com.clover.sdk.v3.payments.Payment
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;

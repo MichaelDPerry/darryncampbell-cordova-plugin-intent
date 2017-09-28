@@ -35,6 +35,7 @@
         <source-file src="src/android/IntentShim.java" target-dir="src/com/darryncampbell/plugin/intent" />
 		<resource-file src="src/android/res/xml/provider_paths.xml" target="res/xml/provider_paths.xml"/>
 		<framework src="com.android.support:support-v4:+" />
+	    	<framework src="com.clover.sdk:clover-android-sdk:latest.release" />
     </platform>
 	
 </plugin>

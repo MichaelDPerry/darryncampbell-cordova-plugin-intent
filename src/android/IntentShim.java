@@ -368,11 +368,6 @@ public class IntentShim extends CordovaPlugin {
         super.onActivityResult(requestCode, resultCode, intent);
         if (onActivityResultCallbackContext != null && intent != null)
         {
-	    //DEBUG
-	    Log.d(LOG_TAG, "requestCode = " + requestCode);
-	    Log.d(LOG_TAG, "resultCode = " + resultCode);
-	    Log.d(LOG_TAG, "Intent = " + intent);
-	    //DEBUG
             intent.putExtra("requestCode", requestCode);
             intent.putExtra("resultCode", resultCode);
             PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));

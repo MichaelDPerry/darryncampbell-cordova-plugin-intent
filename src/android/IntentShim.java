@@ -392,9 +392,7 @@ public class IntentShim extends CordovaPlugin {
             String action = intent.getAction();
             if (onBroadcastCallbackContext != null)
             {
-		Log.d(LOG_TAG, "Intent = " + intent);
                 PluginResult result = new PluginResult(PluginResult.Status.OK, getIntentJson(intent));
-		Log.d(LOG_TAG, "Result = " + result);
                 result.setKeepCallback(true);
                 onBroadcastCallbackContext.sendPluginResult(result);
             }

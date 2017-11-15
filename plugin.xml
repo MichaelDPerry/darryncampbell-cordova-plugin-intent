@@ -19,6 +19,9 @@
             </intent-filter>
         </config-file>
         <config-file target="AndroidManifest.xml" platform="android" parent="/manifest" mode="merge">
+	    <uses-library
+        	android:name="com.datalogic.device"
+        	android:required="true" />
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
         <config-file target="AndroidManifest.xml" platform="android" parent="/manifest/application" mode="merge">
